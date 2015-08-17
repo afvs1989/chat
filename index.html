@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="bower_components/sexystyle/style.css">
 </head>
  
-<body ng-controller="ctrlFire">
+<body ng-controller="ctrlFire" >
    
     <div id="chat">
   <div id="header-chat">
@@ -18,12 +18,12 @@
       <p>(Activo ahora...)</p>
     </header>
   </div>
-  <div id="mensajes" class="row container">
-    <div ng-repeat="chat in listaChats">
+  <div id="mensajes" class="row container" ng-init="agregarTodo()">
+    <div ng-repeat="chat in datos|filter:buscador|orderBy:tipoOrden">
       <section class="col s7">
         <div class="card grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">{{chat.user}}</span>
+              
               <p>{{chat.comentario}}</p>
             </div>
             <div class="card-action">
@@ -58,6 +58,8 @@
   </section>
 
 </div>
+<input type="text" ng-model="buscador">
+<input type="file" >
 
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>

@@ -9,31 +9,31 @@
 
 */
 //Modulo Angular Js  inyectando dependecias 'ngAnimate','firebase','LocalStorageModule'
-angular.module('myApp',['ngAnimate','firebase','LocalStorageModule'])
-	.config(function(localStorageServiceProvider){
-	  localStorageServiceProvider.setPrefix('demoPrefix');
+angular.module('myApp', ['ngAnimate', 'firebase', 'LocalStorageModule'])
+	.config(function(localStorageServiceProvider) {
+		localStorageServiceProvider.setPrefix('demoPrefix');
 	})
-	.controller('ctrlFire',function($scope,$firebaseArray,localStorageService,$filter){
+	.controller('ctrlFire', function($scope, $firebaseArray, localStorageService, $filter) {
 		//Instanciando Firebase
 		var ref = new Firebase("https://chat-afvs.firebaseio.com/");
-		//Obteniendo ek array de firebase
+		//Obteniendo eL array de firebase
 		$scope.listaChats = $firebaseArray(ref)
 		//Formateando a la fecha
 		$scope.factual = $filter('date')(new Date(), "yyyy-MM-dd HH:mm:ss");
 		//Método para agregar el comentario a firebase
-		$scope.agregarComentario = function(){
+		$scope.agregarComentario = function() {
 			//comprobando si la variable token existe
 			if (localStorageService.get('token')) {
 				var token = localStorageService.get('token');
-			}else{
+			} else {
 				var token = 0;
 			}
 			//Envio de parametros a firebase
 			$scope.listaChats.$add({
-				token : token,
-				comentario : $scope.estudiante,
-				user : $scope.txtuser,
-				fecha : $scope.factual
+				token: token,
+				comentario: $scope.estudiante,
+				user: $scope.txtuser,
+				fecha: $scope.factual
 			})
 			$scope.estudiante = ''
 
@@ -41,47 +41,94 @@ angular.module('myApp',['ngAnimate','firebase','LocalStorageModule'])
 
 
 		/*        Uso de Local Storage */
-			//Creo en local storage una variable usuario
+		//Creo en local storage una variable usuario
+		$scope.txtuser = localStorageService.get('usuario');
+
+		//Observo el cambio del cuadro txtuser
+		$scope.$watch('txtuser', function(value) {
+			localStorageService.set('usuario', value);
 			$scope.txtuser = localStorageService.get('usuario');
-			
-			//Observo el cambio del cuadro txtuser
-		    $scope.$watch('txtuser', function(value){
-		      localStorageService.set('usuario',value);
-		      $scope.txtuser = localStorageService.get('usuario');
 
-		    });
+		});
 
-		    $scope.storageType = 'Local storage';
+		$scope.storageType = 'Local storage';
 
-		    if (localStorageService.getStorageType().indexOf('session') >= 0) {
-		      $scope.storageType = 'Session storage';
-		    }
+		if (localStorageService.getStorageType().indexOf('session') >= 0) {
+			$scope.storageType = 'Session storage';
+		}
 
-		    if (!localStorageService.isSupported) {
-		      $scope.storageType = 'Cookie';
-		    }
-
-		    
-		    //Recogiendo el valor del cuadro txtuser
-		    $scope.$watch(function(){
-		      return localStorageService.get('usuario');
-		    }, function(value){
-		      $scope.txtuser = value;
-		    });
+		if (!localStorageService.isSupported) {
+			$scope.storageType = 'Cookie';
+		}
 
 
-		    //Metodo que se invoca si existe un cambio
-		    $scope.local = function() {
-				   var aleatorio = Math.floor((Math.random() * 1000) + 1);
-				   return localStorageService.set('token',$scope.txtuser+'-AfvsCHat-'+aleatorio);
-				   console.log("funciona");
+		//Recogiendo el valor del cuadro txtuser
+		$scope.$watch(function() {
+			return localStorageService.get('usuario');
+		}, function(value) {
+			$scope.txtuser = value;
+		});
+
+
+		//Metodo que se invoca si existe un cambio
+		$scope.local = function() {
+			var aleatorio = Math.floor((Math.random() * 1000) + 1);
+			return localStorageService.set('token', $scope.txtuser + '-AfvsCHat-' + aleatorio);
+			console.log("funciona");
+		}
+
+		
+
+		$scope.agregarTodo = function() {
+
+			if (localStorageService.get('token')) {
+				var token = localStorageService.get('token');
+			} else {
+				var token = 0;
 			}
+			var count = 0;
+			ref.orderByChild("fecha").on("child_added", function(snapshot) {
 
-			//Elimina Local Storage
+				var r, l;
+				count++;
+				if (count == 1) {
+					$scope.datos = [];
+				} else {
+					if (snapshot.val().token == token) {
+						r = false
+						l = true
+						$scope.datos.push({
+							"comentario": snapshot.val().comentario,
+							"user": snapshot.val().user,
+							"fecha": snapshot.val().fecha,
+							"r": r,
+							"l": l
+						});
 
-		    $scope.clearAll = localStorageService.clearAll;
+					} else {
+						r = true
+						l = false
+						$scope.datos.push({
+							"comentario": snapshot.val().comentario,
+							"user": snapshot.val().user,
+							"fecha": snapshot.val().fecha,
+							"r": r,
+							"l": l
+						});
+
+					}
+				}
+
+			})
+
+			console.log($scope.datos);
+
+		}
 
 
+		//Elimina Local Storage
+
+		$scope.clearAll = localStorageService.clearAll;
 
 
 
