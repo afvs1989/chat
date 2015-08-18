@@ -1,7 +1,10 @@
 @import 'bin/materialize.css';
 
-rojo = #f44336 
+rojo = #f44336
 azul = #1e88e5
+blanco = #1e88e7
+gris = #424242
+gris2 = #9e9e9
 
 .user
   font-size: 9px
@@ -12,32 +15,42 @@ azul = #1e88e5
 #mensajes
 	height 450px
 	overflow auto
-	
 .mt
 	padding 10px
-	margin-top 10px
+	margin-top 25px
 	width 100%
 
-.inp label
-	color black
+::-webkit-input-placeholder
+   color: gris;
 
-/* label underline focus color */
-.inp input[type=text]:focus {
+.input-field label
+  color: gris;
+
+.input-field input[type=text]:focus + label
+  color: gris;
+
+.input-field .prefix.active
+  color: gris2;
+
+.inp input[type=text]:focus
  border-bottom: 1px solid azul;
  box-shadow: 0 1px 0 0 azul;
-}
-/* valid color */
-.inp input[type=text].valid {
+
+.inp input[type=text].valid
  border-bottom: 1px solid azul;
  box-shadow: 0 1px 0 0 azul;
-}
-/* invalid color */
-.inp input[type=text].invalid {
+
+.inp input[type=text].invalid
  border-bottom: 1px solid azul;
  box-shadow: 0 1px 0 0 azul;
-}
-/* icon prefix focus color */
-.inp .prefix.active {
+
+.inp .prefix.active
  color: azul;
-}
-     
+
+.input-field input[type=search]:focus
+  border-bottom: 1px solid blanco;
+  box-shadow: 0 1px 0 0 blanco;
+
+.input-field input[type=search]:focus
+    border-bottom: 1px solid blanco;
+    box-shadow: 0 1px 0 0 blanco;
