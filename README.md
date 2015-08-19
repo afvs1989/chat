@@ -1,4 +1,4 @@
-Plantilla para repositorios de git
+LogaChat
 =============
 
 Un ejemplo de plantilla para repositorio de git. Tiene algún fichero traducido al español y un ejemplo de *hook* ligeramente modificado.
@@ -30,14 +30,14 @@ Si quieres quitar todos los ficheros que no sean estrictamente de la plantilla p
 	git clone git@github.com:JJ/repo-plantilla.git --branch instalar
 	mv repo-plantilla .git-template
 ```
-	
-Y luego usarlo con 
+
+Y luego usarlo con
 
 ```
 	git init --template=/home/miusuario/.git-template
-``` 
+```
 
-Es importante que se ponga el camino completo a `.git-template` sin usar la abreviatura `~` del shell. 
+Es importante que se ponga el camino completo a `.git-template` sin usar la abreviatura `~` del shell.
 
 Esta orden copiará todos los ficheros en el subdirectorio indicado al subdirectorio `.git`. Es posible que quieras borrar este fichero `README`, y activar el *hook* de ejemplo haciendo
 
@@ -45,9 +45,4 @@ Esta orden copiará todos los ficheros en el subdirectorio indicado al subdirect
 	mv .git/hooks/prepare-commit-msg.ejemplo .git/hooks/prepare-commit-msg
 ```
 
-que añade una firma (editable) a todos los mensajes de *commit*. 
-
-	
-	
-
-
+que añade una firma (editable) a todos los mensajes de *commit*.
