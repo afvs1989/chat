@@ -95,17 +95,6 @@ angular.module('myApp', ['ngAnimate', 'firebase', 'LocalStorageModule'])
 					$scope.datos = [];
 				} else {
 					if (snapshot.val().token == token) {
-						r = false
-						l = true
-						$scope.datos.push({
-							"comentario": snapshot.val().comentario,
-							"user": snapshot.val().user,
-							"fecha": snapshot.val().fecha,
-							"r": r,
-							"l": l
-						});
-
-					} else {
 						r = true
 						l = false
 						$scope.datos.push({
@@ -116,12 +105,23 @@ angular.module('myApp', ['ngAnimate', 'firebase', 'LocalStorageModule'])
 							"l": l
 						});
 
+					} else {
+						r = false
+						l = true
+						$scope.datos.push({
+							"comentario": snapshot.val().comentario,
+							"user": snapshot.val().user,
+							"fecha": snapshot.val().fecha,
+							"r": r,
+							"l": l
+						});
+
 					}
 				}
-
+				console.log($scope.datos);
 			})
 
-			console.log($scope.datos);
+			
 
 		}
 
@@ -133,3 +133,10 @@ angular.module('myApp', ['ngAnimate', 'firebase', 'LocalStorageModule'])
 
 
 	})
+	.directive('chat', function() {
+	  return {
+	    restrict: 'E',
+	    templateUrl: 'chat.html'
+	  };
+	});
+

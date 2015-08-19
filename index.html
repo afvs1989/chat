@@ -81,23 +81,7 @@
          
         <section ng-repeat="chat in datos|filter:buscador|orderBy:tipoOrden">
 
-          <section class="col s7" ng-class="{left:chat.l , right:chat.r}">
-            <section class="card z-depth-1">
-               <section class="col s2">
-                  <br>
-                  <img class ="circle responsive-img" src="img\E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" alt="" />
-               </section>
-               <section class="col s10 grey-text text-darken-4">
-                  <p class="flow-text">{{chat.user}}</p>
-                  <p>{{chat.comentario}}</p>
-               </section>
-                <section class="card-action">
-                  <a class="thin right grey-text text-darken-3" href="#">{{chat.fecha }}</a>
-                  <br>
-                </section>
-                <br><br><br>
-              </section>
-          </section>
+         <chat></chat>
 
         </section>
       </section>
