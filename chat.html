@@ -1,17 +1,22 @@
- <section class="col s7" ng-class="{left:chat.l , right:chat.r}">
-          <section class="card z-depth-1">
-            <section class="col s2">
-                <br>
-                <img class ="circle responsive-img" src="img\E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" alt="" />
+<section ng-controller="ItemsCtrl">
+   <p>(Activo ahora)</p>
+   <section id="mensajes" scroll-glue-bottom="glued" class="mensajes jumbotron well h" ng-init="agregarTodo()">
+       <section ng-repeat="chat in datos|filter:buscador|orderBy:tipoOrden">
+        <section ng-class="{left:chat.l , right:chat.r}">
+          <section class="row text-left">
+            <section class="col-md-8">
+             <section class="col-md-1">
+                  <img class ="img-circle " src="img\E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" height="40px" alt="" />
+             </section>
+              <section class="col-md-5">
+                 <span>{{chat.user}}</span><br>
+                 <span>{{chat.comentario}}</span><br>
+                 <a class="right grey-text text-darken-3" href="#">{{chat.fecha }}</a>
+              </section>
             </section>
-               <section class="col s10 grey-text text-darken-4">
-                  <p class="flow-text">{{chat.user}}</p>
-                  <p>{{chat.comentario}}</p>
-               </section>
-                <section class="card-action">
-                  <a class="thin right grey-text text-darken-3" href="#">{{chat.fecha }}</a>
-                  <br>
-                </section>
-                <br><br><br>
           </section>
+       </section>
+      <br>
+      </section>
+   </section>
 </section>

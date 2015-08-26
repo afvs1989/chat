@@ -1,14 +1,14 @@
 .h {
-    height: 500px;
+	min-height: 500px;
+    max-height: 600px;
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-.left{
-    
-}
-
-.right{
-    
+footer {
+    position: fixed;
+    height: 70px;
+    bottom: 0;
+    width: 100%;
 }
