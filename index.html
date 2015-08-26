@@ -1,134 +1,143 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-<title>Loga Chat</title>
-<meta charset="utf-8" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="" media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" type="text/css" href="bower_components/sexystyle/style.css">
+      <title>LogaChat</title>
+      <meta charset="utf-8" />
+      <!--CSS-->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-controller="ctrlFire" >
-    <section class="blue darken-1">
-      <section class="row blue darken-1">
-        <nav class=" blue darken-1 noshadow">
-          <section class="nav-wrapper container">
-              <a href="#" class="brand-logo thin">LogaChat</a>
-              <ul class="right hide-on-med-and-down">
-                 <a class="waves-effect waves-light btn white blue-text  modal-trigger" href="#modal1">Usuario</a>
-                  <!-- <a class='dropdown-button btn white blue-text ' href='#' data-activates='dropdown1'>Usuario</a>
-                   Dropdown Structure
-                   <ul id='dropdown1' class='dropdown-content'>
-                      <li><a href="#!">one</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#!">two</a></li>
-                      <li class="divider"></li>
-                   </ul>-->
-                <li><a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a></li>
-                <li><a class="limpiar tooltipped" href="" data-position="bottom" data-delay="50" data-tooltip="Salir" ng-click="clearAll()"><i class="material-icons">exit_to_app</i></a></li>
+   
+      <!-- Menu -->
+      <nav class="navbar navbar-default container" role="navigation">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+                 para mostrarlos mejor en los dispositivos móviles -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">LogaChat</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Perfil</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#usuario">Usuario</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Configuracion <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Acción #1</a></li>
+                    <li><a href="#">Acción #2</a></li>
+                    <li><a href="#">Acción #3</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Acción #4</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Acción #5</a></li>
+                  </ul>
+                </li>
+                <li class=""><a href="#" ng-click="clearAll()">Salir</a></li>
               </ul>
-          </section>
-        </nav>
-      </section>
-      <ul id="slide-out" class="side-nav">
-         <li><a href="#!">First Sidebar Link</a></li>
-         <li><a href="#!">Second Sidebar Link</a></li>
-      </ul>
-      <nav class="container blue darken-1">
-        <div class="nav-wrapper blue darken-1">
-            <div class="input-field">
-              <input id="search" type="search" required ng-model="buscador">
-              <label for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
+              <form class="navbar-form navbar-right" role="search">
+                 <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Buscar" ng-model="buscador">
+                </div>
+              </form>
             </div>
-        </div>
-      </nav>
-    </section>
-      <!-- Modal Structure -->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h3 class="thin">Iniciar</h3>
-        </div>
-        <div class="modal-footer">
-        <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s6">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="icon_prefix" type="text" ng-model="txtuser" ng-change="local()" class="validate">
-                <label for="icon_prefix">Nombre de usuario</label>
-              </div>
-              <div class="input-field col s6">
-                 <i class="material-icons prefix">email</i>
-                <input id="icon_telephone" type="tel" class="validate">
-                <label for="icon_telephone">Correo Electronico</label>
-              </div>
+          </nav>
+          
+      <!-- Modal -->
+      <div class="modal fade" id="usuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Usuario</h4>
             </div>
-          </form>
-        </div>
-
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Iniciar</a>
+            <div class="modal-body text-center">
+                  <form class="form-horizontal">
+                   <img src="img/E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" class="img-circle" alt="">
+                   <br><br><br>
+                   <h4>Usuario</h4>
+                    <div class="form-group ">
+                      <div class="col-sm-8 col-md-offset-2">
+                        <input type="email" class="form-control" id="inputEmail3" ng-model="txtuser" ng-change="local()" placeholder="Escribe tu nombre de usuario">
+                      </div>
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+            </div>
+         </div>
         </div>
       </div>
-    <!--Mensajes-->
-    <section id="chat">
-      <section id="header-chat">
-        <header class="center thin text-teal">
-          <p>(Activo ahora...)</p>
-        </header>
-      </section>
       
-      <section id="mensajes" class="row container" ng-init="agregarTodo()">
-         
-        <section ng-repeat="chat in datos|filter:buscador|orderBy:tipoOrden">
-
-          <section class="col s7" ng-class="{left:chat.l , right:chat.r}">
-            <section class="card z-depth-1">
-               <section class="col s2">
-                  <br>
-                  <img class ="circle responsive-img" src="img\E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" alt="" />
-               </section>
-               <section class="col s10 grey-text text-darken-4">
-                  <p class="flow-text">{{chat.user}}</p>
-                  <p>{{chat.comentario}}</p>
-               </section>
-                <section class="card-action">
-                  <a class="thin right grey-text text-darken-3" href="#">{{chat.fecha }}</a>
-                  <br>
+      
+      <!--Mensajes-->
+      <section ng-controller="ItemsCtrl" class="container text-center">
+         <p>(Activo ahora)</p>
+         <section id="mensajes" scroll-glue-bottom="glued" class="mensajes jumbotron well h" ng-init="agregarTodo()">
+             <section ng-repeat="chat in datos|filter:buscador|orderBy:tipoOrden">
+              <section ng-class="{left:chat.l , right:chat.r}">
+                <section class="row text-left">
+                  <section class="col-md-8">
+                   <section class="col-md-1">
+                        <img class ="img-circle " src="img\E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" height="40px" alt="" />
+                   </section>
+                    <section class="col-md-5">
+                       <span>{{itemchat.user}}</span><br>
+                       <span>{{chat.comentario}}</span><br>
+                       <a class="right grey-text text-darken-3" href="#">{{chat.fecha }}</a>
+                    </section>
+                  </section>
                 </section>
-                <br><br><br>
-              </section>
-          </section>
+             </section>
+            <br>
+            </section>
+         </section>
+      
 
-        </section>
-      </section>
-    </section>
-
-    <!--Inputs-->
-      <section id="caja-mensaje" class="container row">
-
-           <section class="col s1 offset-s2">
-             <img class ="circle responsive-img" src="img\E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" alt="" />
-           </section>
-           <section class="col s6 inp">
-              <div class="input-field">
-                 <input type="text" class="validate" placeholder="Escribir mensaje..." ng-model="estudiante">
-              </div>
-           </section>
-
-           <section class="col s1 ">
-             <button ng-click="agregarComentario()" class="btn col 12 mt blue darken-1 large waves-effect waves-light" type="submit" name="action"> <i class="material-icons">send</i> </button>
-           </section>
       </section>
 
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"> </script>
-    <script type="text/javascript" src="bower_components/sexystyle/bin/materialize.js"></script>
-    <script type="text/javascript" src="bower_components/sexystyle/bin/goo.js"> </script>
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
-    <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.min.js"></script>
-    <script src="https://rawgit.com/grevory/angular-local-storage/master/dist/angular-local-storage.min.js"></script>
-    <script src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+      
+     <!--Enviar--->
+     <form class="container row">
+          <div class="col-md-1 col-md-offset-5">
+             <img src="img/E0519791-4B35-43C9-8D04-DA5455206827-1141-0000001495533B96.jpg" class="img-circle" height="30px" alt="">
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" class=" form-control" id="exampleInputEmail1" placeholder="Escribe un mensaje" ng-model="estudiante">
+          </div>
+          <div class="col-md-3">
+              <button ng-click="agregarComentario()" type="submit" class=" btn btn-default">Enviar</button>
+          </div>
+     </form>
+      
+      <!--          <pre>&lt;div scroll-glue-left="glued"/&gt;</pre>
+          <div scroll-glue-left="glued">
+            <span ng-repeat="item in items.slice().reverse()">{{item}}</span>
+          </div>
+          <pre>&lt;div scroll-glue-right="glued"/&gt;</pre>
+          <div scroll-glue-right="glued">
+            <span ng-repeat="item in items">{{item}}</span>
+          </div>-->
+
+      <!--JS-->
+      <script type="text/javascript" src="js/jquery/dist/jquery.min.js"> </script>
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/angular/angular.min.js"></script>
+      <script type="text/javascript" src="js/src/scrollglue.js"></script>
+      <script type="text/javascript" src="js/firebase/firebase.js"></script>
+      <script type="text/javascript" src="js/angularfire/angularfire.min.js"></script>
+      <script type="text/javascript" src="https://rawgit.com/grevory/angular-local-storage/master/dist/angular-local-storage.min.js"></script>
+      <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+      <script type="text/javascript" src="js/app.js"></script>
+      
 </body>
 </html>
